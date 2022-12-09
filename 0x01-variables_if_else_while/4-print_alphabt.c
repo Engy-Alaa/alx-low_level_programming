@@ -7,15 +7,15 @@
  */
 int main(void)
 {
-	int letter;
+	int i;
 
-	for (letter = 'a'; letter <= 'z'; letter++)
+	for (i = 97; i < 123; i++)
 	{
-		if (letter == 'q' || letter == 'e')
+		if (i != 101 && i != 113)
 		{
-			continue;
+			putchar(i);
 		}
 	}
-	putchar(letter);
+	putchar('\n');
 	return (0);
 }
