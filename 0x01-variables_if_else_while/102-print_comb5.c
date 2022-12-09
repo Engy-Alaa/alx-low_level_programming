@@ -6,40 +6,25 @@
  */
 int main(void)
 {
-	int i, e, g, h, op1, op2;
+	int digit1, digit2;
 
-	i = e = g = h = 48;
-	while (h < 58)
+	for (digit1 = 0; digit1 <= 98; digit1++)
 	{
-		e = 48;
-		while (e < 58)
+		for (digit2 = digit1 + 1; digit2 <= 99; digit2++)
 		{
-			i = 48;
-			while (i < 58)
+			putchar((digit1 / 10) + '0');
+			putchar((digit1 % 10) + '0');
+			putchar(32);
+			putchar((digit2 / 10) + '0');
+			putchar((digit2 % 10) + '0');
+
+			if (digit1 / 10 != 9 || digit1 % 10 != 8)
 			{
-				op1 = (h * 10) + g;
-				op2 = (e * 10) + i;
-				if (op1 < op2)
-				{
-					putchar(h);
-					putchar(g);
-					putchar(' ');
-					putchar(e);
-					putchar(i);
-					if (h == 57 && g == 56 && e == 57 && i == 57)
-					{
-						break;
-					}
-					putchar(',');
-					putchar(' ');
-				}
-				i++;
+				putchar(44);
+				putchar(32);
 			}
-			e++;
 		}
-		g++;
 	}
-	h++;
-putchar('\n');
-return (0);
+	putchar(10);
+	return (0);
 }
