@@ -20,7 +20,7 @@ int main(void)
 		{
 			printf("Fizz ");
 		}
-		else if ((num % 5) == 0
+		else if ((num % 5) == 0)
 		{
 			if (num != 100)
 			{
@@ -32,8 +32,9 @@ int main(void)
 			}
 		}
 		else
+		{
 			printf("%d ", num);
-
+		}
 		printf("\n");
 		return (0);
 }
