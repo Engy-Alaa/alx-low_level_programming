@@ -12,7 +12,7 @@ void print_rev(char *s)
 	for (count = 0; s[count] != '\0'; count++)
 		inc++;
 
-	for (count = inc; count >= 0; count--)
+	for (count = inc-1; count >= 0; count--)
 		_putchar(s[count]);
 	_putchar(10);
 	
