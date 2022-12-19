@@ -10,7 +10,7 @@ void rev_string(char *s)
 
 	len = 0;
 
-	for (count = 0; str1[count] != '\0'; count++)
+	for (count = 0; s[count] != '\0'; count++)
 	{
 		len++;
 	}
@@ -18,9 +18,9 @@ void rev_string(char *s)
 	for (i = 0; i < (len) / 2; i++)
 	{
 		/* temp variable use to temporary hold the string*/
-		temp = *(str1 + i);
-		*(str1 + i) = *(str1 + (len - i - 1));
-		*(str1 + (len - i - 1)) = temp;
+		temp = *(s + i);
+		*(s + i) = *(s + (len - i - 1));
+		*(s + (len - i - 1)) = temp;
 	}
 }
 
