@@ -1,4 +1,4 @@
-i#include "main.h"
+#include "main.h"
 /**
 *print_array - print n element of array
 *@a: array
