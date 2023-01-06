@@ -1,14 +1,12 @@
-#include "main.h"
+#include "holberton.h"
+
 /**
-*_isdigit - function that verifies if a  character is a digit or not
-*@c: tested character
-*Return: returns 1 if it is uppercase , 0 if not
-*/
+ * _isdigit - checks if a character is digit
+ * @c: carrier variable
+ * Return: 1 if true, 0 if false
+ */
 
 int _isdigit(int c)
 {
-if ((c >= 48) && (c <= 57))
-return (1);
-
-return (0);
+	return (c >= 48 && c <= 57);
 }
