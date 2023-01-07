@@ -1,12 +1,6 @@
-#ifndef HOLBERTON_H
-#define HOLBERTON_H
-
-/*
- * File: holberton.h
- * Auth: Firdaus
- * Desc: Header file containing the prototypes of all functions
- *       included in the static library libholberton.a.
- */
+#ifndef MAIN_H
+#define MAIN_H
+#include <stddef.h>
 
 int _putchar(char c);
 int _islower(int c);
@@ -28,5 +22,4 @@ char *_strchr(char *s, char c);
 unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
-
 #endif
