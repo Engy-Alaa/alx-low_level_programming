@@ -1,5 +1,6 @@
 #include "dog.h"
 
+
 /**
 *_strlen - returns length of
 *a string
@@ -17,7 +18,7 @@ return (len);
 
 
 /**
-*_strcopy - copy string pointed by src
+*_strcpy - copy string pointed by src
 *into dest variable
 *@dest:buffer storing string copy
 *@src: buffer storing string to copy
@@ -34,6 +35,9 @@ dest[index] = '\0';
 return (dest);
 }
 
+
+
+
 /**
 *new_dog - creates a new dog
 *@name: name of new dog
@@ -42,37 +46,36 @@ return (dest);
 *Return: returns NULL in case
 *of failure
 */
-
 dog_t *new_dog(char *name, float age, char *owner)
 {
-dog_t *new_dog;
+dog_t *dogt;
 
 if (name == NULL || age < 0 || owner == NULL)
 return (NULL);
 
-new_dog = malloc(sizeof(dog_t));
+dogt = malloc(sizeof(dog_t));
+if (dogt == NULL)
+return (NULL);
 
-if (new_dog == NULL)
-	return (NULL);
-
-new_dog->name = malloc(sizeof(char) * (_strlen(owner) + 1));
-new_dog->name = _strcpy(new_dog->name, name);
-
-if (new_dog->name == NULL)
-	{
-	free(new_dog);
-	return (NULL);
-	}
-
-new_dog->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-new_dog->owner = _strcpy(new_dog->owner, owner);
-
-if (new_dog->owner == NULL)
-	{
-	free(new_dog->name);
-	free(new_dog);
-	return (NULL);
-	}
-new_dog->age = age;
-return (new_dog);
+dogt->name = malloc(sizeof(char) * (_strlen(name) + 1));
+if (dogt->name == NULL)
+{
+free(dogt);
+return (NULL);
 }
+
+dogt->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
+if (dogt->owner == NULL)
+{
+free(dogt->name);
+free(dogt);
+return (NULL);
+}
+
+dogt->name = _strcpy(dogt->name, name);
+dogt->age = age;
+dogt->owner = _strcpy(dogt->owner, owner);
+
+return (dogt);
+}
+
