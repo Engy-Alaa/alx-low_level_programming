@@ -1,22 +1,5 @@
 #include "dog.h"
 
-
-/**
-*_strlen - returns length of
-*a string
-*@str: string to be counted
-*Return: returns length of string
-*/
-int _strlen(char *str)
-{
-int len = 0;
-while (str)
-len++;
-
-return (len);
-}
-
-
 /**
 *_strcpy - copy string pointed by src
 *into dest variable
@@ -36,8 +19,6 @@ return (dest);
 }
 
 
-
-
 /**
 *new_dog - creates a new dog
 *@name: name of new dog
@@ -46,36 +27,41 @@ return (dest);
 *Return: returns NULL in case
 *of failure
 */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-dog_t *dogt;
+	dog_t *dogt;
+	char *new_name, *new_owner;
 
-if (name == NULL || age < 0 || owner == NULL)
-return (NULL);
+	if (name == NULL || owner == NULL)
+	{
+		return (NULL);
+	}
 
-dogt = malloc(sizeof(dog_t));
-if (dogt == NULL)
-return (NULL);
+	dogt = malloc(sizeof(dog_t));
+	if (dogt == NULL)
+	{
+		return (NULL);
+	}
 
-dogt->name = malloc(sizeof(char) * (_strlen(name) + 1));
-if (dogt->name == NULL)
-{
-free(dogt);
-return (NULL);
+	new_name = _strcpy(name);
+	if (new_name == NULL)
+	{
+		free(dogt);
+		return (NULL);
+	}
+	dogt->name = new_name;
+
+	dogt->age = age;
+
+	new_owner = _strcpy(owner);
+	if (new_owner == NULL)
+	{
+		free(dogt->name);
+		free(dogt);
+		return (NULL);
+	}
+	dogt->owner = new_owner;
+
+	return (dogt);
 }
-
-dogt->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-if (dogt->owner == NULL)
-{
-free(dogt->name);
-free(dogt);
-return (NULL);
-}
-
-dogt->name = _strcpy(dogt->name, name);
-dogt->age = age;
-dogt->owner = _strcpy(dogt->owner, owner);
-
-return (dogt);
-}
-
