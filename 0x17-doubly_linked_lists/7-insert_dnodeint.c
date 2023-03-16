@@ -1,66 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
-/**
- * create_dnode - creates new node
- * @n: data of node
- * @prev: link to prev node
- * @next: link to next node
- * Return: pointer to new node
- */
-dlistint_t *create_dnode(int n, dlistint_t *prev, dlistint_t *next)
-{
-	dlistint_t *new;
 
-	new = malloc(sizeof(dlistint_t));
-	if (new == NULL)
-		return (NULL);
-	new->n = n;
-	new->prev = prev;
-	new->next = next;
-	return (new);
-}
 /**
- * insert_dnodeint_at_index - inserts a new node at a given position
- * @h: head of doubly-linked list
- * @idx: index for insertion of new node
- * @n: data for new node
- * Return: address of new node or NULL if error
+ * insert_dnodeint_at_index - insert node at specific index
+ * @h: head of linked list
+ * @idx: index of new node
+ * @n: new node value
+ * Return: inserted node
  */
+
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *curr = *h, *localPrev = NULL;
-	unsigned int count = 0;
+	dlistint_t *current;
+	dlistint_t *new;
 
-	if (!h)
+	if (h == NULL)
+		return (0);
+
+	current = *h;
+
+	while (idx != 0)
+	{
+		current = current->next;
+		idx--;
+		if (current == NULL)
+			return (NULL);
+	}
+
+	new = malloc(sizeof(dlistint_t));
+
+	if (new == NULL)
+	{
+		free(new);
 		return (NULL);
-	if (idx == 0) /* insert at list beginning*/
-	{
-		if (!*h)
-			*h = create_dnode(n, NULL, NULL); /*first node*/
-		else
-		{
-			(*h)->prev = create_dnode(n, NULL, *h);
-			*h = (*h)->prev;
-		}
-		return (*h);
 	}
-	for (curr = *h; curr && (count < idx); curr = curr->next, count++)
-	{
-		localPrev = curr;
-	}
-	if ((count == idx) && (curr == NULL)) /*insert at list end*/
-	{
-		localPrev->next = create_dnode(n, localPrev, NULL);
-		return (localPrev->next);
-	}
-	if ((count < idx) && (curr == NULL))/*idx too high*/
-		return (NULL);
-	if (localPrev != NULL)
-	{       /*insert in middle of list*/
-		localPrev->next = create_dnode(n, localPrev, curr);
-		curr->prev = localPrev->next;
-		return (localPrev->next);
-	}
-	return (NULL); /*should never run*/
+
+	new->n = n;
+	new->next = current;
+	new->prev = current->prev;
+	if (current->prev != NULL)
+		current->prev->next = new;
+
+	/*TODO: Handle special case when idx is 0 and last index*/
+
+	return (current);
 }
